@@ -14,7 +14,7 @@ var bio = {
 	"picture": "images/andrea.jpg",
 	"welcomeMsg": "The time to be awesome is now!!!",
 	"skills": ["html","css","asp.net", "sql","oracle", "c#", "vb"]
-}
+};
 
 bio.display = function() {
 
@@ -29,16 +29,24 @@ bio.display = function() {
 	$("#topContacts").prepend(HTMLemail.replace("%data%", bio.contactInfo.email));
 	$("#topContacts").prepend(HTMLmobile.replace("%data%", bio.contactInfo.mobile));
 
+	$("#footerContacts").prepend(HTMLlocation.replace("%data%", bio.contactInfo.location));
+	$("#footerContacts").prepend(HTMLgithub.replace("%data%", bio.contactInfo.github));
+	$("#footerContacts").prepend(HTMLemail.replace("%data%", bio.contactInfo.email));
+	$("#footerContacts").prepend(HTMLmobile.replace("%data%", bio.contactInfo.mobile));
+
 	$("#header").append(HTMLbioPic.replace("%data%", bio.picture));
 	$("#header").append(HTMLwelcomeMsg.replace("%data%", bio.welcomeMsg));
 
 	$("#header").append(HTMLskillsStart);
 
-	for (skill in bio.skills) {
-	  	$("#skills").append(HTMLskills.replace("%data%", bio.skills[skill]));
+
+	for (var skill in bio.skills) {
+		if(bio.skills.hasOwnProperty(skill)) {
+	  		$("#skills").append(HTMLskills.replace("%data%", bio.skills[skill]));
+	  	}
 	}
 
-}
+};
 
 var work = {
 	"jobs": [
@@ -63,24 +71,26 @@ var work = {
 	]
 
 
-}
+};
 
 work.display = function () {
 
-	for (job in work.jobs) {
-	 	$("#workExperience").append(HTMLworkStart);
+	for (var job in work.jobs) {
+		if(work.jobs.hasOwnProperty(job)) {
+		 	$("#workExperience").append(HTMLworkStart);
 
-	 	var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
-	 	var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
-	 	var formattedEmployerTitle = formattedEmployer + formattedTitle;
+		 	var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
+		 	var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
+		 	var formattedEmployerTitle = formattedEmployer + formattedTitle;
 
-	 	$(".work-entry:last").append(formattedEmployerTitle);
+		 	$(".work-entry:last").append(formattedEmployerTitle);
 
-	 	$(".work-entry:last").append(HTMLworkDates.replace("%data%", work.jobs[job].dates));
-		$(".work-entry:last").append(HTMLworkDescription.replace("%data%", work.jobs[job].description));
+		 	$(".work-entry:last").append(HTMLworkDates.replace("%data%", work.jobs[job].dates));
+			$(".work-entry:last").append(HTMLworkDescription.replace("%data%", work.jobs[job].description));
+		}
 	}
 
-}
+};
 
 var education = {
 	"schools": [
@@ -100,29 +110,31 @@ var education = {
 			"url": "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001"
 		}
 	]
-}
+};
 
 education.display = function () {
-	for (school in education.schools) {
+	for (var school in education.schools) {
+		if(education.schools.hasOwnProperty(school)) {
+			$("#education").append(HTMLschoolStart);
 
-		$("#education").append(HTMLschoolStart);
-
-		$(".education-entry:last").append(HTMLschoolName.replace("%data%", education.schools[school].name) + HTMLschoolDegree.replace("%data%", education.schools[school].degree));
-		$(".education-entry:last").append(HTMLschoolDates.replace("%data%", education.schools[school].dates));
-		$(".education-entry:last").append(HTMLschoolLocation.replace("%data%", education.schools[school].location));
-		$(".education-entry:last").append(HTMLschoolMajor.replace("%data%", education.schools[school].major));
+			$(".education-entry:last").append(HTMLschoolName.replace("%data%", education.schools[school].name) + HTMLschoolDegree.replace("%data%", education.schools[school].degree));
+			$(".education-entry:last").append(HTMLschoolDates.replace("%data%", education.schools[school].dates));
+			$(".education-entry:last").append(HTMLschoolLocation.replace("%data%", education.schools[school].location));
+			$(".education-entry:last").append(HTMLschoolMajor.replace("%data%", education.schools[school].major));
+		}
 	}
 
-	for (onlineCourse in education.onlineCourses) {
+	for (var onlineCourse in education.onlineCourses) {
+		if(education.onlineCourses.hasOwnProperty(onlineCourse)) {
+			$(".education-entry:last").append(HTMLonlineClasses);
 
-		$(".education-entry:last").append(HTMLonlineClasses);
-
-		$(".education-entry:last").append(HTMLonlineTitle.replace("%data%", education.onlineCourses[onlineCourse].title) + HTMLonlineSchool.replace("%data%", education.onlineCourses[onlineCourse].school));
-		$(".education-entry:last").append(HTMLonlineDates.replace("%data%", education.onlineCourses[onlineCourse].dates));
-		$(".education-entry:last").append(HTMLonlineURL.replace("%data%", education.onlineCourses[onlineCourse].url));
+			$(".education-entry:last").append(HTMLonlineTitle.replace("%data%", education.onlineCourses[onlineCourse].title) + HTMLonlineSchool.replace("%data%", education.onlineCourses[onlineCourse].school));
+			$(".education-entry:last").append(HTMLonlineDates.replace("%data%", education.onlineCourses[onlineCourse].dates));
+			$(".education-entry:last").append(HTMLonlineURL.replace("%data%", education.onlineCourses[onlineCourse].url));
+		}
 	}
 
-}
+};
 
 
 var projects = {
@@ -135,24 +147,27 @@ var projects = {
 		}
 	]
 	
-}
+};
 
 projects.display = function () {
-	for (project in projects.projects) {
+	for (var project in projects.projects) {
+		if(projects.projects.hasOwnProperty(project)) {
+			$("#projects").append(HTMLprojectStart);
 
-		$("#projects").append(HTMLprojectStart);
+			$(".project-entry:last").append(HTMLprojectTitle.replace("%data%", projects.projects[project].title));
+			$(".project-entry:last").append(HTMLprojectDates.replace("%data%", projects.projects[project].dates));
+			$(".project-entry:last").append(HTMLprojectDescription.replace("%data%", projects.projects[project].description));
 
-		$(".project-entry:last").append(HTMLprojectTitle.replace("%data%", projects.projects[project].title));
-		$(".project-entry:last").append(HTMLprojectDates.replace("%data%", projects.projects[project].dates));
-		$(".project-entry:last").append(HTMLprojectDescription.replace("%data%", projects.projects[project].description));
-
-		for (image in projects.projects[project].images) {
-  			$(".project-entry:last").append(HTMLprojectImage.replace("%data%", projects.projects[project].images[image]));
+			for (var image in projects.projects[project].images) {
+				if(projects.projects[project].images.hasOwnProperty(image)) {
+	  				$(".project-entry:last").append(HTMLprojectImage.replace("%data%", projects.projects[project].images[image]));
+	  			}
+			}
 		}
 
 	}
 
-}
+};
 
 
 
