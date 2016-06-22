@@ -41,11 +41,10 @@ bio.display = function() {
 
 	$("#header").append(HTMLskillsStart);
 
+	for (var indexCount = 0; indexCount < bio.skills.length; indexCount++) {
 
-	for (var skill in bio.skills) {
-		if(bio.skills.hasOwnProperty(skill)) {
-	  		$("#skills").append(HTMLskills.replace(data, bio.skills[skill]));
-	  	}
+		$("#skills").append(HTMLskills.replace(data, bio.skills[indexCount]));
+	  	
 	}
 
 };
@@ -62,14 +61,20 @@ var work = {
 			"employer": "TNS",
 			"title": "Web Developer",
 			"dates": "2015 - 2016",
-			"description": "Development and supporting web applications. Creating database tables, queries and scripts on multiple DBMS (SQL Server, MYSQL). Management of change control for multiple environments (DEV, UAT and PROD). Organization and monitoring of SIT and UAT testings.",
+			"description": "Development and supporting web applications. Creating database tables, queries and scripts on multiple" +
+			" DBMS (SQL Server, MYSQL). Management of change control for multiple environments (DEV, UAT and PROD). Organization and" +
+			" monitoring of SIT and UAT testings.",
 			"location": "Mexico City"
 		},
 		{
 			"employer": "JP Morgan Chase",
 			"title": "Trainee, Application Delivery Mexico",
 			"dates": "2013 - 2015",
-			"description": "Development and supporting BI processes using Pentaho tool for regulatory reporting of finance, operations and accounting. Development and support of macros for reporting purposes. Help with the support in front and middle office on the trading floor. Creating database tables, queries and scripts on multiple DBMS (Oracle, Sybase, SQL Server). Management of change control for multiple environments (DEV, UAT and PROD). Organization and monitoring of SIT and UAT testings. Solution and control of incidents in production. Developed an application to have monitored all incidents affecting different areas of business including systems",
+			"description": "Development and supporting BI processes using Pentaho tool for regulatory reporting of finance,"+
+			" operations and accounting. Development and support of macros for reporting purposes. Help with the support in"+
+			" front and middle office on the trading floor. Creating database tables, queries and scripts on multiple DBMS (Oracle, Sybase, SQL Server)."+
+			" Management of change control for multiple environments (DEV, UAT and PROD). Organization and monitoring of SIT and UAT testings."+
+			" Solution and control of incidents in production. Developed an application to have monitored all incidents affecting different areas of business including systems",
 			"location": "Mexico City"
 		}]
 };
@@ -86,6 +91,8 @@ work.display = function () {
 		$(".work-entry:last").append(formattedEmployerTitle);
 
 		$(".work-entry:last").append(HTMLworkDates.replace(data, work.jobs[indexCount].dates));
+		$(".work-entry:last").append(HTMLworkLocation.replace(data, work.jobs[indexCount].location));
+		
 		$(".work-entry:last").append(HTMLworkDescription.replace(data, work.jobs[indexCount].description));
 		
 	}
@@ -100,7 +107,7 @@ var education = {
 			"location": "Mexico City",
 			"degree": "Bachelor",
 			"majors": ["Engineering Cybernetics and Computers Systems"],
-			"url": ["http://www.lasalle.mx/"]
+			"url": "http://www.lasalle.mx/"
 		}
 	],
 	"onlineCourses": [
@@ -114,12 +121,13 @@ var education = {
 };
 
 education.display = function () {
+	$("#education").append(HTMLschoolStart);
 	for (var school in education.schools) {
 		if(education.schools.hasOwnProperty(school)) {
-			$("#education").append(HTMLschoolStart);
+			
 
 			$(".education-entry:last").append(HTMLschoolName.replace(data, education.schools[school].name) + HTMLschoolDegree.replace(data, education.schools[school].degree));
-			$(".education-entry:last").append(HTMLschoolDates.replace(data, education.schools[school].date));
+			$(".education-entry:last").append(HTMLschoolDates.replace(data, education.schools[school].dates));
 			$(".education-entry:last").append(HTMLschoolLocation.replace(data, education.schools[school].location));
 
 			for (var indexCount = 0; indexCount < education.schools[school].majors.length; indexCount++) {
@@ -127,13 +135,15 @@ education.display = function () {
 			}
 		}
 	}
-
+	$("#education").append(HTMLonlineClasses);
+	$("#education").append(HTMLschoolStart);
+	
 	for (var onlineCourse in education.onlineCourses) {
+		
 		if(education.onlineCourses.hasOwnProperty(onlineCourse)) {
-			$(".education-entry:last").append(HTMLonlineClasses);
 
 			$(".education-entry:last").append(HTMLonlineTitle.replace(data, education.onlineCourses[onlineCourse].title) + HTMLonlineSchool.replace(data, education.onlineCourses[onlineCourse].school));
-			$(".education-entry:last").append(HTMLonlineDates.replace(data, education.onlineCourses[onlineCourse].dates));
+			$(".education-entry:last").append(HTMLonlineDates.replace(data, education.onlineCourses[onlineCourse].date));
 			$(".education-entry:last").append(HTMLonlineURL.replace(data, education.onlineCourses[onlineCourse].url));
 		}
 	}

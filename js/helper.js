@@ -107,7 +107,8 @@ function initializeMap() {
   var locations;
 
   var mapOptions = {
-    disableDefaultUI: true
+    disableDefaultUI: true,
+    zoom: 14
   };
 
   /* 
@@ -184,7 +185,7 @@ function initializeMap() {
     // bounds.extend() takes in a map location object
     bounds.extend(new google.maps.LatLng(lat, lon));
     // fit the map to the new marker
-    map.fitBounds(bounds);
+    //map.fitBounds(bounds);
     // center the map
     map.setCenter(bounds.getCenter());
   }
